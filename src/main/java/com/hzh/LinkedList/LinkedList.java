@@ -84,4 +84,35 @@ public class LinkedList<T> {
         }
         return prePos.data;
     }
+
+    public void inverseAllInPair(){
+        Node pre = head;
+        Node pos = head.next;
+        if(pos == null){
+            throw new IndexOutOfBoundsException();
+        }
+        while(pos != null && pos.next != null){
+            inversePair(pre, pos);
+            pre = pre.next.next;
+            pos = pos.next.next;
+        }
+    }
+
+    public void inversePair(Node pre, Node start){
+        pre.next = start.next;
+        Node temp = start.next.next;
+        start.next.next = start;
+        start.next = temp;
+    }
+
+    @Override
+    public String toString() {
+        Node pos = head.next;
+        String body = "LinkedList{";
+        while(pos != null){
+            body += pos.data + "-->";
+        }
+        body += " }";
+        return body;
+    }
 }

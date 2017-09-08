@@ -10,6 +10,7 @@ public class FindKthReverse<T> {
             list.add("Node " + i);
         }
         System.out.println(list.findKthReverseComplex(8));
-        System.out.println(list.findKthReverseEasy(11));
+        list.inverseAllInPair();
+        System.out.println(list);
     }
 }
