@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * Created by huzhenhua on 2017/12/7.
  */
-public class Sum18 {
+public class Sum {
     public static int solution(int a, int b) {
         StringBuilder aStr = new StringBuilder();
         StringBuilder bStr = new StringBuilder();
