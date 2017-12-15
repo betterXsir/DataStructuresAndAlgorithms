@@ -1,4 +1,4 @@
-package com.hzh.Stack;
+package com.hzh.stack;
 
 public class QueueByTwoStack<E extends Object> {
     private ArrayStack<E> stackPre;

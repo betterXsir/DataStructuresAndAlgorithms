@@ -1,4 +1,4 @@
-package com.hzh.Stack;
+package com.hzh.stack;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package com.hzh.Stack;
+package com.hzh.stack;
 
 public class JudgePalindromeByStack {
     public static boolean isPalindrome(String str){

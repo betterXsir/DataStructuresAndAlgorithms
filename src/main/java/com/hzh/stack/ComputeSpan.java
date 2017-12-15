@@ -1,4 +1,4 @@
-package com.hzh.Stack;
+package com.hzh.stack;
 
 public class ComputeSpan {
     private static int[] computeSpan(int[] inputArray){
