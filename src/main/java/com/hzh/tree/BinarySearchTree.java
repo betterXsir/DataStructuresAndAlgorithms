@@ -4,81 +4,81 @@ package com.hzh.tree;
  * Created by huzhenhua on 2017/10/24.
  */
 public class BinarySearchTree<T extends Comparable> {
-    private class BinarySearchTreeNode {
-        private T data;
-        private BinarySearchTreeNode left;
-        private BinarySearchTreeNode right;
+//    private class BinarySearchTreeNode {
+//        private T data;
+//        private BinarySearchTreeNode left;
+//        private BinarySearchTreeNode right;
+//
+//        public BinarySearchTreeNode(T data){
+//            this.data = data;
+//            left = null;
+//            right = null;
+//        }
+//    }
 
-        public BinarySearchTreeNode(T data){
-            this.data = data;
-            left = null;
-            right = null;
-        }
-    }
-
-    private BinarySearchTreeNode root;
+    private BinaryTreeNode root;
 
     public void insert(T data){
-        BinarySearchTreeNode pre = null;
-        BinarySearchTreeNode pos = root;
+        BinaryTreeNode pre = null;
+        BinaryTreeNode pos = root;
         boolean isLeft = false;
         if(root == null){
-            root = new BinarySearchTreeNode(data);
+            root = new BinaryTreeNode(data);
         }
         else{
             while(pos != null){
-                if(data.compareTo(pos.data) < 0){
+                if(data.compareTo(pos.getData()) < 0){
                     pre = pos;
-                    pos = pos.left;
+                    pos = pos.getLeft();
                     isLeft = true;
                 }
-                else if(data.compareTo(pos.data) > 0){
+                else if(data.compareTo(pos.getData()) > 0){
                     pre = pos;
-                    pos = pos.right;
+                    pos = pos.getRight();
                     isLeft = false;
                 }
                 else{
                     throw new IllegalArgumentException("the data you want to insert has existed");
                 }
             }
-            BinarySearchTreeNode node = new BinarySearchTreeNode(data);
+            BinaryTreeNode node = new BinaryTreeNode(data);
             if(isLeft){
-                pre.left = node;
+                pre.setLeft(node);
             }
             else{
-                pre.right = node;
+                pre.setRight(node);
             }
         }
     }
 
-    public BinarySearchTreeNode delete(BinarySearchTreeNode root, T data){
+    public BinaryTreeNode delete(BinaryTreeNode root, T data){
         if(root == null){
             return null;
         }
-        else if(root.data.compareTo(data) < 0){
-            root.left = delete(root.left, data);
+        else if(root.getData().compareTo(data) < 0){
+            root.setLeft(delete(root.getLeft(), data));
         }
-        else if(root.data.compareTo(data) > 0){
-            root.right = delete(root.right, data);
+        else if(root.getData().compareTo(data) > 0){
+            root.setRight(delete(root.getRight(), data));
         }
         else{
-            if(root.left == null || root.right == null){
-                return root.left == null ? root.right : root.left;
+            if(root.getLeft() == null || root.getRight() == null){
+                return root.getLeft() == null ? root.getRight() : root.getLeft();
             }
             else{
-                BinarySearchTreeNode pre = root;
-                BinarySearchTreeNode p = root.left;
-                while(p.right != null){
+                BinaryTreeNode pre = root;
+                BinaryTreeNode p = root.getLeft();
+                while(p.getRight() != null){
                     pre = p;
-                    p = p.right;
+                    p = p.getRight();
                 }
-                if(p == root.left){
-                    root.data = p.data;
-                    pre.left = p.left;
+                if(p == root.getLeft()){
+                    root.setData(p.getData());
+                    pre.setLeft(p.getLeft());
                 }
                 else{
-                    root.data = p.data;
-                    pre.right = p.left;
+                    root.setData(p.getData());
+                    pre.setRight(p.getLeft());
                     p = null;
                 }
             }
@@ -86,17 +86,21 @@ public class BinarySearchTree<T extends Comparable> {
         return root;
     }
 
-    public BinarySearchTreeNode findKthElement(BinarySearchTreeNode root, int k, int count){
+    public BinaryTreeNode findKthElement(BinaryTreeNode root, int k, int count){
         if(root == null){
             return null;
         }
-        BinarySearchTreeNode left = findKthElement(root.left, k, count);
+        BinaryTreeNode left = findKthElement(root.getLeft(), k, count);
         if(left != null){
             return left;
         }
         else if(++count == k){
             return root;
         }
-        return findKthElement(root.right, k, count);
+        return findKthElement(root.getRight(), k, count);
+    }
+
+    public BinaryTreeNode getRoot() {
+        return root;
     }
 }

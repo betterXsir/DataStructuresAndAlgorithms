@@ -39,13 +39,15 @@ public class DynamicArrayQueue<T>{
             }
             rear += initCapacity;
         }
+        capacity = capacity << 1;
     }
 
     public void enQueue(T t) {
         if(isFull()){
             resizeQueue();
         }
-        array[(rear+1)%capacity] = t;
+        array[(rear + 1)%capacity] = t;
+        rear = (rear + 1) % capacity;
         if(front == -1){
             front = rear;
         }
