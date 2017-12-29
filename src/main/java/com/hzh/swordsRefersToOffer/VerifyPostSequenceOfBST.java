@@ -15,7 +15,7 @@ public class VerifyPostSequenceOfBST {
         else if(rootPos == start) {
             return solution(sequence, rootPos, end - 1);
         }
-        else if(rootPos > end) {
+        else if(rootPos > end - 1) {
             return solution(sequence, start, end - 1);
         }
         else {
@@ -33,7 +33,13 @@ public class VerifyPostSequenceOfBST {
             if(sequence[i] < rootData) {
                 return -1;
             }
+            i ++;
         }
         return rootPos;
+    }
+
+    public static void main(String[] args) {
+        int[] sequence = {5, 6, 7};
+        System.out.println(solution(sequence, 0, sequence.length - 1));
     }
 }
